@@ -13,7 +13,7 @@ public class Main {
         Integer i1 = 6;
         Integer i2 = 8;
         Character ch = 'k';
-        Long l = 67000l;
+        Long l = 67000L;
         Double d = 3.56d;
         Float f = -19.2f;
         String str = "hello";
@@ -46,17 +46,17 @@ public class Main {
 
         //Исходные данные для MathBox
         Integer i3 = 6;
-        Number[] numbers = new Number[]{(byte) -13, (short) 30000, 15, (byte) 9, i3, 12.3f, 18.7d, (byte) 1, 30l,
+        Number[] numbers = new Number[]{(byte) -13, (short) 30000, 15, (byte) 9, i3, 12.3f, 18.7d, (byte) 1, 30L,
                 31L, 10f, 102};
         MathBox<Number> mathBox = new MathBox<>(numbers);
         System.out.println("Initial mathBox: " + mathBox.dump());
         //Сравнение 2 MathBox
-        Number[] numbers2 = new Number[]{(byte) -13, (short) 30000, 15, (byte) 9, i3, 12.3f, 18.7d, (byte) 1, 30l,
-                31l, 10f, 102};
+        Number[] numbers2 = new Number[]{(byte) -13, (short) 30000, 15, (byte) 9, i3, 12.3f, 18.7d, (byte) 1, 30L,
+                31L, 10f, 102};
         MathBox<Number> mathBox2 = new MathBox<>(numbers2);
         //Поменяем тип первого элемента
-        Number[] numbers3 = new Number[]{(short) -13, (short) 30000, 15, (byte) 9, i3, 12.3f, 18.7d, (byte) 1, 30l,
-                31l, 10f, 102};
+        Number[] numbers3 = new Number[]{(short) -13, (short) 30000, 15, (byte) 9, i3, 12.3f, 18.7d, (byte) 1, 30L,
+                31L, 10f, 102};
         MathBox<Number> mathBox3 = new MathBox<>(numbers3);
         System.out.println("Equals mathBox1 and mathBox2 = " + mathBox.equals(mathBox2));
         System.out.println("Equals mathBox1 and mathBox3 = " + mathBox.equals(mathBox3));
