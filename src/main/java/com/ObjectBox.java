@@ -7,14 +7,14 @@ import java.util.HashSet;
 У класса должен быть метод deleteObject, проверяющий наличие объекта в коллекции и при наличии удаляющий его.
 Должен быть метод dump, выводящий содержимое коллекции в строку.
 */
-public class ObjectBox {
-    HashSet<Object> collection;
+public class ObjectBox<T> {
+    protected HashSet<T> collection;
 
     ObjectBox() {
         collection = new HashSet<>();
     }
 
-    public void addObject(Object object) {
+    public void addObject(T object) {
         if (object == null) {
             throw new NullPointerException("Exception: attempt to add null");
         } else {
@@ -33,5 +33,4 @@ public class ObjectBox {
         }
         return res;
     }
-
 }

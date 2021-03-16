@@ -1,6 +1,7 @@
 package com;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Objects;
 
 /*
 Задание 1. Написать класс MathBox, реализующий следующий функционал:
@@ -16,7 +17,8 @@ MathBox для вывода данных на экран и хранение о�
 Создать метод, который получает на вход Integer и если такое значение есть в коллекции, удаляет его.
 */
 
-public class MathBox<T extends Number> extends ObjectBox {
+// MathBox - наследник ObjectBox, но с типом Number
+public class MathBox<T extends Number> extends ObjectBox<T> {
 
     public MathBox(T[] array) throws Exception {
 
@@ -31,25 +33,26 @@ public class MathBox<T extends Number> extends ObjectBox {
 
     public double summator() {
         double sum = 0;
-        for (Object c : this.collection) {
-            sum += ((Number) c).doubleValue();
+        for (T c : this.collection) {
+            sum += c.doubleValue();
         }
         return sum;
     }
 
-    public void splitter(double divider) throws Exception {
-        if (divider == 0) {
+    public void splitter(T divider) throws Exception {
+        if (Double.compare(divider.doubleValue(), 0.0d) == 0) {
             throw new Exception("Divided by zero");
         }
         System.out.println("Divided by " + divider);
-        HashSet<Object> collectionDivision = new HashSet<>();
-        for (Object c : this.collection) {
-            collectionDivision.add(((Number) c).doubleValue() / divider);
+        HashSet<Number> collectionDivision = new HashSet<>();
+        for (T c : this.collection) {
+            collectionDivision.add(c.doubleValue() / divider.doubleValue());
         }
-        this.collection = collectionDivision;
+        this.collection = (HashSet<T>)collectionDivision;
     }
 
     public void remove(Integer a) {
+        System.out.println("Remove  " + a);
         super.collection.remove(a);
     }
 
@@ -60,16 +63,15 @@ public class MathBox<T extends Number> extends ObjectBox {
 
     @Override
     public boolean equals(Object o) {
+        //Проверка ссылок
+        if (this == o) return true;
         //Проверка типов объектов
         if (o == null || !this.getClass().equals(o.getClass())) {
             return false;
         }
         //Сравниваем сами коллекции
-        HashSet<Object> setObj = ((MathBox) o).collection;
-        if (!this.collection.equals(setObj)) {
-            return false;
-        }
-        return true;
+        MathBox altMathBox = ((MathBox) o);
+        return this.collection.equals(altMathBox.collection);
     }
 
     @Override
