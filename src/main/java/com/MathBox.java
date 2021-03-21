@@ -2,6 +2,7 @@ package com;
 
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /*
 Задание 1. Написать класс MathBox, реализующий следующий функционал:
@@ -20,13 +21,16 @@ MathBox для вывода данных на экран и хранение о�
 // MathBox - наследник ObjectBox, но с типом Number
 public class MathBox<T extends Number> extends ObjectBox<T> {
 
-    public MathBox(T[] array) throws Exception {
-
+    public MathBox(T[] array) {
         for (T a : array) {
             if (!super.collection.contains(a)) {
                 super.addObject(a);
             } else {
-                throw new Exception("Element " + a.doubleValue() + " already exist");
+                try {
+                    throw new Exception("Element " + a.doubleValue() + " already exist");
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
             }
         }
     }
@@ -39,16 +43,20 @@ public class MathBox<T extends Number> extends ObjectBox<T> {
         return sum;
     }
 
-    public void splitter(T divider) throws Exception {
+    public void splitter(T divider) {
         if (Double.compare(divider.doubleValue(), 0.0d) == 0) {
-            throw new Exception("Divided by zero");
+            try {
+                throw new Exception("Divided by zero");
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
         System.out.println("Divided by " + divider);
-        HashSet<Number> collectionDivision = new HashSet<>();
+        Set<Number> collectionDivision = new HashSet<>();
         for (T c : this.collection) {
             collectionDivision.add(c.doubleValue() / divider.doubleValue());
         }
-        this.collection = (HashSet<T>)collectionDivision;
+        this.collection = (HashSet<T>) collectionDivision;
     }
 
     public void remove(Integer a) {

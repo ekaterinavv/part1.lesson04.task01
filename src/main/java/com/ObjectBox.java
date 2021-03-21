@@ -13,6 +13,9 @@ public class ObjectBox<T> {
     ObjectBox() {
         collection = new HashSet<>();
     }
+    ObjectBox(HashSet<T> collection) {
+        this.collection = collection;
+    }
 
     public void addObject(T object) {
         if (object == null) {
